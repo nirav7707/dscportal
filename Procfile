@@ -1,0 +1,1 @@
+web: gunicorn dscportal.wsgi --log-file -

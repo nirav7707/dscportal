@@ -1,0 +1,31 @@
+{% extends 'bash.html' %}
+{% block content %}
+    <form method="POST" enctype='multipart/form-data'>
+        {% csrf_token %}
+          <!-- <lable>name</lable>
+         <input type="text" name="name" />
+          <lable>description</lable>
+        <input type="text" name="description" />
+          <lable>file</lable>
+        <input type="file" name="datafile" /> -->
+        <div class="d-flex flex-column m-3 p-5 justify-content-start">
+        <div>{{form.name.label}}</div>
+        <div>{{form.name}}</div>
+        <div>{{form.description.label}}</div>
+        <div>{{form.description}}</div>
+        
+        <div>{{form.datafile.label}}</div>
+        <div>{{form.datafile}}</div>
+        
+        <div><input type="submit" value="submit" /></div>
+        </div>
+      </form>
+      <script>
+      		var form_fields = document.getElementsByTagName('input')
+		      for (var field in form_fields){	
+			    form_fields[field].className += ' form-control m-2'
+		      }
+          document.getElementById('id_datafile').className = 'm-2'
+
+      </script>
+{% endblock %}

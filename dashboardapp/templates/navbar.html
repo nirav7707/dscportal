@@ -1,0 +1,44 @@
+{% load static %}
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <a class="navbar-brand" href="#"><img src="{% static 'media/dscnavlogo.png' %}" alt=""></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    {% if not dashboard %}
+      <li class="nav-item active">
+        <a class="nav-link text-light" href="{% url 'dashboard' %}">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'datalist' 1 %}">Python</a>
+      </li>
+          <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'datalist' 2 %}">Web</a>
+      </li>
+          <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'datalist' 3 %}">Android</a>
+      </li>
+          <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'datalist' 4 %}">GCD</a>
+      </li>
+      {% endif %}
+
+      </li>
+          <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'event' 1 %}">Upcoming Events</a>
+      </li>
+      </li>
+          <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'event' 0 %}">Events done by us</a>
+      </li>
+    </ul>
+    <div class="d-block d-md-flex justify-content-center align-items-center">
+        <div class="p-2">Hello, {{request.user}}</div>
+        <div class="p-2"><a href="{% url 'logout' %}" class="btn btn-danger">logout</a></div>
+    </div>
+  </div>
+</nav>

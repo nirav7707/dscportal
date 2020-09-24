@@ -1,0 +1,54 @@
+{% extends 'bash.html' %}
+{% block content %}
+<div class="row d-flex  m-2">
+  <div class="col-md-6 d-flex">
+      <form>
+        {{myfilter.form}}
+        <input type="submit" value="Search" />
+      </form>
+  </div>  
+  {% if usertype %}
+  <div class="col-md-6">
+  <a href={% url 'createdata' id %} class="btn btn-block btn-outline-primary">create</a>
+  </div>
+  {% endif %}
+</div>
+    {% comment %} {% if usertype %}
+    <form method="POST" enctype='multipart/form-data'>
+      {% csrf_token %}
+        <lable>name</lable>
+       <input type="text" name="name" />
+        <lable>description</lable>
+      <input type="text" name="description" />
+        <lable>file</lable>
+      <input type="file" name="datafile" />
+      <input type="submit" value="submit" /> 
+    </form>
+    {% endif %} {% endcomment %}
+    <table class="table">
+    <thead>
+      <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Download</th>
+      {% if usertype %}
+      <th scope="col">Update</th>
+      <th scope="col">Delete</th>
+        {% endif %}
+    </tr>
+    </thead>
+    <tbody>
+      {% for x in data %}
+      <tr>
+        <td >{{x.name}}</td>
+        <td class="col-md-4">{{x.description}}</td>
+        <td class="col-md-2"><a href="{{x.datafile.url}}" class="btn btn-outline-warning">Download</a></td>
+        {% if usertype %}
+        <td class="col-md-2"><a href="{% url 'updatedata' x.id id %}" class="btn btn-outline-success">update</a></td>
+        <td class="col-md-2"><form method="POST" action="{% url 'deletedata' x.id id %}">{%csrf_token%}<input type="submit" class="btn btn-outline-danger" value="delete"></form></td>
+        {% endif %}
+      </tr>
+    </tbody>
+      {% endfor %}
+    </table>
+{% endblock %}
