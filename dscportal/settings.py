@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'bqal&1$lue9a@)yv-i-wores$$1g0&=#7^_(on+dj93l=7lsoh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['dscportal.herokuapp.com','127.0.0.1']
 
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'dashboardapp'
 ]
@@ -138,7 +139,7 @@ STATICFILES_DIRS=[
 ]
 
 MEDIA_ROOT=os.path.join(BASE_DIR,'static/media')
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST="smtp.gmail.com"
 EMAIL_PORT=587
